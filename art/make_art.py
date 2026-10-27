@@ -37,7 +37,9 @@ def fit(w, h, max_cols, max_rows):
 
 def grab(src, crop, cols, rows, fmt):
     pre = f"crop={crop}," if crop else ""
-    vf = f"{pre}scale={cols}:{rows}:flags=lanczos,unsharp=3:3:1.2,eq=saturation=1.25,format={fmt}"
+    # full-resolution colour before scaling: on 4:2:0 the sharpen + saturation steps
+    # leave the last column black whenever the width is odd
+    vf = f"{pre}format=yuv444p,scale={cols}:{rows}:flags=lanczos,unsharp=3:3:1.2,eq=saturation=1.25,format={fmt}"
     raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", src, "-vf", vf, "-f", "rawvideo", "-"],
                          capture_output=True, check=True).stdout
     n = cols * rows * (3 if fmt == "rgb24" else 1)
