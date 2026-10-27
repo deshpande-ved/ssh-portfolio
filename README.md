@@ -23,10 +23,16 @@ terminals open them in your browser on click (⌘-click on macOS).
 
 ```
 your terminal → Cloudflare DNS (A record, DNS-only) → Oracle Cloud VM, port 22 → Wish → Bubble Tea
+your browser  → Cloudflare DNS (same record)         → Oracle Cloud VM, ports 80/443 → Caddy → 302 to vedsite.com/projects/ssh
 ```
 
 - One Go binary runs natively on an Oracle Cloud free-tier VM. SSH can't go
   through Cloudflare's proxy on the free tier, so the record is DNS-only.
+- Because the record is DNS-only, Cloudflare can't redirect browsers either, so
+  [Caddy](https://caddyserver.com) on the same VM does it: opening
+  `portfolio.vedsite.com` in a browser (http or https, any path) sends you to the
+  project page at [vedsite.com/projects/ssh](https://vedsite.com/projects/ssh).
+  Caddy gets and renews its own Let's Encrypt certificate and never touches port 22.
 - [Wish](https://github.com/charmbracelet/wish) is the SSH server. Each
   connection gets its own [Bubble Tea](https://github.com/charmbracelet/bubbletea)
   program, styled with [Lip Gloss](https://github.com/charmbracelet/lipgloss).
