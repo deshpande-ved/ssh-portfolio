@@ -623,7 +623,10 @@ type project struct {
 }
 
 var projects = []project{
-	{"Patrick: AINU Chatathon", "sourced patent briefs for solo founders", "runner-up, misneach track · $300 · built in a day",
+	{"HuskyHealth: HACK1984", "zero-knowledge personal health API", "3rd place, privacy-first track · $1,000 · built solo in a weekend",
+		"Apple Watch and Garmin workouts reach your own private REST API automatically, and nobody can read them on the way, not even the server. The iPhone app seals each workout on the phone (AES-256-GCM, RSA-OAEP), the Flask API on my Pi stores only ciphertext, and the website and app decrypt on your device. On top: a daily train-hard-or-go-easy call from published sports science, and a voice you can ask about your week.",
+		[]string{"https://huskyhealth.pages.dev", "https://devpost.com/software/huskyhealth", "https://www.youtube.com/watch?v=oSx1ohXl3VM", "https://vedsite.com/projects/huskyhealth"}},
+	{"Patrick: AINU Chatathon", "sourced patent briefs for solo founders", "2nd place, misneach track · $300 · built in a day",
 		"Built in a day with cruz-andr: describe an invention and get a sourced patent brief for a solo founder's first attorney meeting. It cites real Google Patents records and quoted passages, and never fabricates a record or gives a legal verdict. I built the frontend, the AI output contract, an offline layout harness and sandboxed LaTeX/PDF export.",
 		[]string{"https://ainu-chatathon.vercel.app", "https://vedsite.com/projects/patrick"}},
 	{"Pi 5 Homelab", "NAS, backups, self-hosted services", "raspberry pi 5 · nas · nightly backups · live monitoring",
